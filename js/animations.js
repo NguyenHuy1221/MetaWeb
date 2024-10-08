@@ -1,28 +1,27 @@
 let lastScrollTop = 0;
 const header = document.querySelector("header");
+const py3Element = document.querySelector(".py-3");
+const logo = document.getElementById("logo");
 
 window.addEventListener("scroll", function () {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-  if (scrollTop > lastScrollTop) {
-    // Cuộn xuống -> ẩn header
-    header.classList.add("header-hidden");
-    header.classList.remove("header-active");
+  if (scrollTop > 0) {
+    // Khi cuộn xuống, thêm class để làm trắng background và đổi màu chữ thành đen
+    header.classList.add("header-active");
+    py3Element.classList.add("no-gradient"); // Tắt gradient khi cuộn xuống
+    logo.src = "https://meet.wa-employeereferrals.com/assets/images/logo.svg";
   } else {
-    // Cuộn lên -> hiện header
-    header.classList.remove("header-hidden");
-
-    // Nếu cuộn không phải về top -> đổi màu header thành trắng
-    if (scrollTop > 0) {
-      header.classList.add("header-active");
-    } else {
-      // Nếu cuộn về vị trí đầu trang -> xóa lớp header-active để trở về như cũ
-      header.classList.remove("header-active");
-    }
+    // Khi cuộn về đầu trang, giữ nguyên trạng thái ban đầu
+    header.classList.remove("header-active");
+    py3Element.classList.remove("no-gradient"); // Bật lại gradient
+    logo.src = "https://meet.wa-employeereferrals.com/assets/images/logo_white.svg";
   }
 
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Tránh trường hợp giá trị âm
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Tránh giá trị âm
 });
+
+
 
 function openLogin() {
   const loginContainer = document.querySelector(".float-login-container");
@@ -69,40 +68,9 @@ function toggleMenu() {
   console.log(1);
 }
 
-document.getElementById("areas-of-work").addEventListener("click", function () {
-  const dropMenu = document.querySelector(".drop-menu");
-  dropMenu.classList.toggle("show");
-});
 
-const banner = document.querySelector(".banner");
 
-function handleScroll(event) {
-  const maxScrollLeft = banner.scrollWidth - banner.clientWidth;
 
-  if (banner.scrollLeft >= maxScrollLeft && event.deltaY > 0) {
-    // Nếu đã cuộn hết và cuộn tiếp, cho phép cuộn trang
-    window.scrollBy({
-      top: event.deltaY, // Cuộn xuống dưới phần body
-      behavior: "smooth",
-    });
-  } else if (banner.scrollLeft === 0 && event.deltaY < 0) {
-    // Nếu đã ở đầu danh sách và cuộn ngược lại, cho phép cuộn trang lên trên
-    window.scrollBy({
-      top: event.deltaY, // Cuộn lên trên phần body
-      behavior: "smooth",
-    });
-  } else {
-    // Vẫn ở trong vùng có thể cuộn ngang, ngăn cuộn trang và chỉ cuộn ngang
-    event.preventDefault();
-    banner.scrollBy({
-      left: event.deltaY > 0 ? 200 : -200,
-      behavior: "smooth",
-    });
-  }
-}
-
-// Gắn sự kiện cuộn cho phần banner
-banner.addEventListener("wheel", handleScroll);
 
 const navLinks = document.querySelectorAll("nav ul li a");
 
@@ -121,12 +89,3 @@ navLinks.forEach((link) => {
   });
 });
 
-window.addEventListener("load", function () {
-  const bannerContent = document.querySelector(".banner-content");
-  bannerContent.classList.add("show"); // Thêm lớp `show` khi trang được tải
-});
-
-window.addEventListener("load", function () {
-  const bannerImage = document.querySelector(".banner-image");
-  bannerImage.classList.add("show"); // Thêm lớp `show` khi trang được tải
-});
