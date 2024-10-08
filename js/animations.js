@@ -89,3 +89,11 @@ navLinks.forEach((link) => {
   });
 });
 
+document.getElementById('scrollLink').addEventListener('click', function(event) {
+  event.preventDefault(); // Ngăn chặn hành vi mặc định của liên kết
+
+  // Cuộn đến phần mục tiêu
+  document.getElementById('jobsSection').scrollIntoView({
+    behavior: 'smooth' // Thêm hiệu ứng cuộn mượt mà
+  });
+});

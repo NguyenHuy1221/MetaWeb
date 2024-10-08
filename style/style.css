@@ -99,7 +99,7 @@ header:not(.header-hidden) {
 }
 
 .header-content {
-    /* max-width: 1200px; */
+    /* max-width: 1400px; */
     margin: 0 auto;
     /* padding: 0px 16px; */
     
@@ -205,10 +205,10 @@ header:not(.header-hidden) {
 
 .float-login-container {
     display: none;
-    height: 85vh;
+    height: 100vh;
     background: white;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, .1);
-    width: 23%;
+    width: 11%;
     position: absolute;
     right: 10px;
     top: 60px;
@@ -608,9 +608,15 @@ section{
 }
 
 /* content-3 */
-.challenges{
+.challenges {
     background-color: #128C7E;
     padding: 97px 0;
+    width: 100vw; /* Đặt chiều rộng bằng 100% chiều rộng viewport */
+    position: relative; /* Để tránh ảnh hưởng của các thuộc tính cha */
+    left: 50%; /* Đẩy nó về bên trái */
+    right: 50%; /* Đẩy nó về bên phải */
+    margin-left: -50vw; /* Đẩy về bên trái bằng một nửa chiều rộng viewport */
+    margin-right: -50vw; /* Đẩy về bên phải bằng một nửa chiều rộng viewport */
 }
 
 .content-3{
@@ -1107,6 +1113,9 @@ section{
     font-size: 80px;
     font-weight: bold;
     font-family: Helvetica, Arial, sans-serif;
+    line-height: 1.2;
+    text-align: left;
+    padding-left: 40px;
 }
 
 .contact-info {
@@ -1489,6 +1498,10 @@ section{
         width: 100%;
     }
     
+    .content-left p {
+      
+        padding-left: 0px;
+    }
 }
 
 
@@ -1795,4 +1808,74 @@ section{
        width: 100%;
        margin-bottom: 20px;
    }
+}
+
+@media (min-width: 1024px) and (max-width: 1024px) {
+
+    .py-3 {
+        max-width: 1200px;
+        width: 100%;
+        margin: auto;
+        padding: 0 16px;
+    }
+}
+
+@media (min-width: 1680px) and (max-width: 1680px) {
+
+    .header-content {
+        max-width: 1380px;
+        margin: 0 auto;
+    }
+
+   
+
+    .logo-meta {
+        margin-left: 80px;
+    }
+
+  
+  
+    .nav-menu ul li {
+        margin-right: 20px; 
+    }
+    
+    .nav-menu ul li:last-child {
+        margin-right: 0; 
+    }
+    
+}
+
+@media (min-width: 1440px) and (max-width: 1440px) {
+
+    .py-3 {
+        width: 100%;
+        margin: auto;
+        padding: 0 16px;
+    }
+
+    .logo-meta {
+        margin-left: 90px;
+    }
+}
+
+@media (min-width: 2496px) and (max-width: 3440px) {
+    .header-content {
+        max-width: 1410px;
+        margin: 0 auto;
+    }
+
+   
+    
+    .nav-menu ul li {
+        margin-right: 20px; /* Khoảng cách giữa các mục (tùy chỉnh theo nhu cầu) */
+    }
+    
+    .nav-menu ul li:last-child {
+        margin-right: 0; /* Không có khoảng cách bên phải cho mục cuối cùng */
+    }
+    
+
+    .logo-meta {
+        margin-left: 120px;
+    }
 }
